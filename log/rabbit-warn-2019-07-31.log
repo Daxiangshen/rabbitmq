@@ -1,0 +1,2 @@
+2019-07-31 15:43:30.941 [http-nio-8080-exec-1] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: No converter found for return value of type: class org.springframework.http.ResponseEntity$DefaultBuilder]
+2019-07-31 15:43:38.682 [http-nio-8080-exec-2] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: No converter found for return value of type: class org.springframework.http.ResponseEntity$DefaultBuilder]
