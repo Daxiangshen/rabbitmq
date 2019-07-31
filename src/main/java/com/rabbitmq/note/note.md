@@ -1,0 +1,7 @@
+关于RabbitMQ（本项目暂时主要实现RabbitMQ的confirm模式，也就是所谓的消息确认ack机制）
+
+本项目持续更新 后续会有RabbitMQ的事务，权限管理，以及RabbitMQ的全新的延迟队列插件的使用（取代手动设置TTL），以及和springCloudStream集成
+
+RabbitMQ的全新的延迟队列插件已在springCloudStream实战中使用过，亲测有效。但与ACK结合还存在疑惑。待之后测试
+
+
