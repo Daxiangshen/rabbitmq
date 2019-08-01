@@ -17,7 +17,7 @@ import java.util.UUID;
  * @date : 2019-07-31 15:40
  **/
 @Component
-public class CallBackSender implements RabbitTemplate.ConfirmCallback{
+public class CallBackSender{
 
     @Resource
     private RabbitTemplate rabbitTemplate;
@@ -26,19 +26,17 @@ public class CallBackSender implements RabbitTemplate.ConfirmCallback{
      *  测试广播模式
      */
     public void send() {
-        rabbitTemplate.setConfirmCallback(this);
         String msg = "callbackSender : i am callback sender";
         System.err.println(msg);
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
         System.err.println("callbackSender UUID: " + correlationData.getId());
-        this.rabbitTemplate.convertAndSend("FANOUT_EXCHANGE", "", msg, correlationData);
+        rabbitTemplate.convertAndSend("FANOUT_EXCHANGE", "", msg, correlationData);
     }
 
     /**
      *  测试Direct模式
      */
     public void direct() {
-        rabbitTemplate.setConfirmCallback(this);
         String msg = "callbackSender : i am callback sender";
         System.err.println(msg);
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
@@ -56,11 +54,5 @@ public class CallBackSender implements RabbitTemplate.ConfirmCallback{
             message.getMessageProperties().setHeader("x-delay", 9000);
             return message;
         });
-    }
-
-    @Override
-    public void confirm(CorrelationData correlationData, boolean b, String s) {
-        //这里的ack是Broker对发布者消息到达服务端的确认
-        System.err.println("callback confirm  "+correlationData.getId()+"  ACK:  "+b+"  cause: "+s);
     }
 }
