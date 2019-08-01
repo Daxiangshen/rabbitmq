@@ -25,6 +25,11 @@ public class Receiver {
         //采用手动应答模式
         //使用时需要在yml开启手动确认设置
         //消息的标识，false只确认当前一个消息收到，true确认所有将比第一个参数指定的 delivery tag 小的consumer都获得的消息
+        /**
+         * 下面这行代码就是手动确认。如果删除，则还是会消费消息，但是队列中不会删除这条消息，也不会重复推送。但是如果consumer重启
+         * 则会重新推送这条消息。直到进行手动确认为止。
+         * 没有手动确认的话。在mq的管理界面中的UnAckEd下可以看到消息存在。当关闭consumer时,会从UnAckEd下回到Ready下面,等待consumer启动后发出
+         * */
         channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
     }
 
