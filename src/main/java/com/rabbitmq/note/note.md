@@ -81,6 +81,16 @@ Consumer收到消息时需要显式的向RabbitMQ Broker发送basic.ack消息或
 + 如果Consumer接收了消息，发送ack，RabbitMQ会删除队列中这个消息，发送另一条消息给Consumer
 + 如果Consumer接收了消息, 但如果没有发送ACK，那么这条消息会去到RabbitMQ的UnAckEd下面。但不会重复推送消息。这时如果关闭Consumer那么消息会  
   回到ready下面。重启Consumer时会再次推送消息。以此类推，直到确认为止。这样就可以避免因为Consumer挂掉而导致的消息丢失
+  
+
+
+```java
+//TODO
+rabbitTemplate.convertAndSend("FANOUT_EXCHANGE", "", msg, (message) ->{
+            message.getMessageProperties().setHeader("x-delay", 9000); 
+            return message;
+        });
+```
  
 
 
