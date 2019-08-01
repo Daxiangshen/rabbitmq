@@ -16,7 +16,7 @@ RabbitMQ的安装在这里不多做赘述，先安装ErLang,再安装RabbitMQ即
 + Producer `消息生产者`  
 + Exchange `交换机:它指定消息按什么规则，路由到哪个队列`  
 + Queue `队列:消息队列载体，每个消息都会被投入到一个或多个队列`  
-+ Consumer `消息消费者`  
++ Consumer `消息消费者 ps:多个监听一个队列的消费者每次只有一个消费者可以收到消息`  
   
 - Binding `绑定:消息队列与交换器直接关联的，它的作用就是把Exchange和Queue按照路由规则绑定起来`
 - Routing Key `路由键:路由关键字，Exchange根据这个关键字进行消息投递`
