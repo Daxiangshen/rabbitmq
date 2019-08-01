@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * RabbitConfig  class
  *
@@ -131,5 +134,34 @@ public class RabbitConfig {
     @Bean
     public Binding bindingB(@Qualifier("fanoutQueueB") Queue queue, @Qualifier("fanoutExchange") FanoutExchange fanoutExchange) {
         return BindingBuilder.bind(queue).to(fanoutExchange);
+    }
+
+    /* ----------------------------------------------------------------------------延迟队列插件测试（包含ACK）--------------------------------------------------------------------------- */
+    /**
+     * 创建延迟队列交换机
+     * 注意：类型必须是x-delayed-message
+     * */
+    @Bean("delayExchange")
+    public CustomExchange customExchange(){
+        //设置交换机类型
+        Map<String,Object> args=new HashMap<>();
+        args.put("x-delayed-type", "direct");
+        return new CustomExchange("DELAY_EXCHANGE","x-delayed-message",true,false,args);
+    }
+
+    /**
+     * 创建队列
+     * */
+    @Bean("delayQueue")
+    public Queue delayQueue(){
+        return QueueBuilder.durable("DELAY_QUEUE").build();
+    }
+
+    /**
+     * 将DELAY_QUEUE队列绑定到DELAY_EXCHANGE交换机
+     * */
+    @Bean
+    public Binding bindingDelay(@Qualifier("delayQueue") Queue queue, @Qualifier("delayExchange") CustomExchange exchange){
+        return BindingBuilder.bind(queue).to(exchange).with("DELAY_ROUTING_KEY").noargs();
     }
 }

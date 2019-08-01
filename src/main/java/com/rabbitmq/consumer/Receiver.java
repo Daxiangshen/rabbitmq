@@ -6,6 +6,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Receiver  class
@@ -52,6 +54,17 @@ public class Receiver {
         System.err.println("DIRECT "+new String (message.getBody()));
         //采用手动应答模式
         //使用时需要在yml开启手动确认设置
+        channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
+    }
+
+    /**
+     * 延迟消息插件队列监听
+     * */
+    @RabbitListener(queues = {"DELAY_QUEUE"})
+    public void delay(Message message,Channel channel) throws IOException {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.err.println("接收时间:" + sf.format(new Date()));
+        System.err.println("消息内容：" + new String(message.getBody()));
         channel.basicAck(message.getMessageProperties().getDeliveryTag(),false);
     }
 }

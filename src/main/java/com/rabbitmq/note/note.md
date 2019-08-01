@@ -80,13 +80,23 @@ Consumer收到消息时需要显式的向RabbitMQ Broker发送basic.ack消息或
 在通信过程中，队列对ACK的处理有以下几种情况：  
 + 如果Consumer接收了消息，发送ack，RabbitMQ会删除队列中这个消息，发送另一条消息给Consumer
 + 如果Consumer接收了消息, 但如果没有发送ACK，那么这条消息会去到RabbitMQ的UnAckEd下面。但不会重复推送消息。这时如果关闭Consumer那么消息会  
-  回到ready下面。重启Consumer时会再次推送消息。以此类推，直到确认为止。这样就可以避免因为Consumer挂掉而导致的消息丢失
+  回到ready下面。重启Consumer时会再次推送消息。以此类推，直到确认为止。这样就可以避免因为Consumer挂掉而导致的消息丢失  
   
+##四.RabbitMQ延迟消息插件
 
-
+###1.插件安装  
+<a href="https://www.rabbitmq.com/blog/2015/04/16/scheduling-messages-with-rabbitmq/" target="_blank">官方说明链接</a>  
+1.插件下载，找到rabbitmq_delayed_message_exchange插件，根据您使用的RabbitMQ版本选择对应的插件版本下载即可  
+<a href="https://www.rabbitmq.com/community-plugins.html" target="_blank">下载地址</a>  
+2.下载好之后，解压得到.ez结尾的插件包，将其复制到RabbitMQ安装目录下的plugins文件夹  
+3.通过命令行启用该插件：
+```shell
+rabbitmq-plugins enable rabbitmq_delayed_message_exchange
+```
+该插件在通过上述命令启用后就可以直接使用，不需要重启  
+以下是发送代码。具体配置在config中查看
 ```java
-//TODO
-rabbitTemplate.convertAndSend("FANOUT_EXCHANGE", "", msg, (message) ->{
+rabbitTemplate.convertAndSend("DELAY_EXCHANGE", "DELAY_ROUTING_KEY", msg, (message) ->{
             message.getMessageProperties().setHeader("x-delay", 9000); 
             return message;
         });

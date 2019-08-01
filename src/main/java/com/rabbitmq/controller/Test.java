@@ -25,4 +25,9 @@ public class Test {
     public void send2(){
         callBackSender.direct();
     }
+
+    @RequestMapping("/delay")
+    public void delay(){
+        callBackSender.delay();
+    }
 }
