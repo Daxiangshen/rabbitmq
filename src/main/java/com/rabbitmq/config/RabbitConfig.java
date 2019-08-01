@@ -140,6 +140,8 @@ public class RabbitConfig {
     /**
      * 创建延迟队列交换机
      * 注意：类型必须是x-delayed-message
+     *
+     * args代表携带的参数，noArgs表示没有额外参数
      * */
     @Bean("delayExchange")
     public CustomExchange customExchange(){
