@@ -3,7 +3,6 @@ package com.rabbitmq.service;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
