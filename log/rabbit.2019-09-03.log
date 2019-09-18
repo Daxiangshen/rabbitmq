@@ -1,0 +1,91 @@
+2019-09-03 14:47:35.521 [main] INFO  com.rabbitmq.RabbitmqApplication - Starting RabbitmqApplication on DESKTOP-J9068CD with PID 17300 (D:\code\rabbitmq\target\classes started by Admin in D:\code\rabbitmq)
+2019-09-03 14:47:35.532 [main] INFO  com.rabbitmq.RabbitmqApplication - No active profile set, falling back to default profiles: default
+2019-09-03 14:47:37.443 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2019-09-03 14:47:37.459 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2019-09-03 14:47:37.469 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-09-03 14:47:37.469 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-09-03 14:47:37.592 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-09-03 14:47:37.592 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1994 ms
+2019-09-03 14:47:37.994 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-03 14:47:38.359 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [localhost:5672]
+2019-09-03 14:47:38.410 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#50a3d0f6:0/SimpleConnection@2016f509 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 61901]
+2019-09-03 14:47:38.482 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2019-09-03 14:47:38.492 [main] ERROR org.apache.catalina.util.LifecycleBase - Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:263)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:195)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:296)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:742)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:389)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202)
+	at com.rabbitmq.RabbitmqApplication.main(RabbitmqApplication.java:10)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:433)
+	at sun.nio.ch.Net.bind(Net.java:425)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:230)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:213)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1124)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1210)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:585)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 14 common frames omitted
+2019-09-03 14:47:38.496 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Pausing ProtocolHandler ["http-nio-8080"]
+2019-09-03 14:47:38.497 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2019-09-03 14:47:38.504 [main] INFO  org.apache.catalina.util.LifecycleBase - The stop() method was called on component [StandardServer[-1]] after stop() had already been called. The second call will be ignored.
+2019-09-03 14:47:38.504 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+2019-09-03 14:47:38.504 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Destroying ProtocolHandler ["http-nio-8080"]
+2019-09-03 14:47:38.506 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2019-09-03 14:47:38.507 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2019-09-03 14:47:38.511 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2019-09-03 14:47:39.471 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2019-09-03 14:47:39.472 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2019-09-03 14:47:39.472 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2019-09-03 14:47:39.474 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2019-09-03 14:47:39.475 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2019-09-03 14:47:39.475 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2019-09-03 14:47:39.477 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2019-09-03 14:47:39.480 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2019-09-03 14:47:39.480 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2019-09-03 14:47:39.480 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2019-09-03 14:47:39.480 [main] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Shutdown ignored - container is not active already
+2019-09-03 14:47:39.481 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-03 14:50:36.423 [main] INFO  com.rabbitmq.RabbitmqApplication - Starting RabbitmqApplication on DESKTOP-J9068CD with PID 5304 (D:\code\rabbitmq\target\classes started by Admin in D:\code\rabbitmq)
+2019-09-03 14:50:36.425 [main] INFO  com.rabbitmq.RabbitmqApplication - No active profile set, falling back to default profiles: default
+2019-09-03 14:50:38.327 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 3333 (http)
+2019-09-03 14:50:38.347 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-3333"]
+2019-09-03 14:50:38.357 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2019-09-03 14:50:38.357 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-09-03 14:50:38.515 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-09-03 14:50:38.516 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 1946 ms
+2019-09-03 14:50:38.934 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-03 14:50:39.186 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [localhost:5672]
+2019-09-03 14:50:39.228 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#7cb2651f:0/SimpleConnection@6daf7d37 [delegate=amqp://guest@127.0.0.1:5672/, localPort= 62044]
+2019-09-03 14:50:39.293 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-3333"]
+2019-09-03 14:50:39.317 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 3333 (http) with context path ''
+2019-09-03 14:50:39.320 [main] INFO  com.rabbitmq.RabbitmqApplication - Started RabbitmqApplication in 3.297 seconds (JVM running for 3.871)

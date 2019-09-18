@@ -1,22 +1,24 @@
+server:
+  port: 3333
 spring:
   rabbitmq:
     username: guest
     password: guest
-#    Ö§³Ö·¢²¼È·ÈÏ
+#    Ö§ï¿½Ö·ï¿½ï¿½ï¿½È·ï¿½ï¿½
     publisher-confirms: true
-#    Ö§³Ö·¢²¼·µ»Ø
+#    Ö§ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     publisher-returns: true
     listener:
       simple:
-#        ²ÉÓÃackÊÖ¶¯Ó¦´ð
+#        ï¿½ï¿½ï¿½ï¿½ackï¿½Ö¶ï¿½Ó¦ï¿½ï¿½
         acknowledge-mode: manual
-#        µ±Ç°¼àÌýÈÝÆ÷Êý
+#        ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         concurrency: 1
-#        ×î´óÊý
+#        ï¿½ï¿½ï¿½ï¿½ï¿½
         max-concurrency: 1
-#        ÊÇ·ñÖ§³ÖÖØÊÔ
+#        ï¿½Ç·ï¿½Ö§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         retry:
           enabled: true
-#          ÈÕÖ¾ÅäÖÃ
+#          ï¿½ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½
 logging:
   config: classpath:logback.xml
